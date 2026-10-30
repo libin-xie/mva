@@ -1,0 +1,168 @@
+{
+  "name": "multivalue-basic-analyser",
+  "displayName": "MultiValue Basic Analyser",
+  "description": "Generate documentation reports for Rocket UniVerse BASIC programs, including the internal call tree with Mermaid or Markmap diagrams, file usage, metrics and warnings.",
+  "version": "1.0.0",
+  "publisher": "L Xie",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "icon": "images/icon.png",
+  "sponsor": {
+    "url": "https://buy.stripe.com/5kQ9AUgkD5iT3Bwffq6EU02"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "UniVerse",
+    "UniVerse BASIC",
+    "MultiValue",
+    "Pick BASIC",
+    "Rocket",
+    "documentation",
+    "call tree",
+    "code analysis",
+    "Mermaid",
+    "jbase",
+    "d3",
+    "uvdoc",
+    "Markmap"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "mvbasicAnalyser.analyseProgram",
+        "title": "Analyse Program",
+        "category": "MultiValue Basic Analyser"
+      },
+      {
+        "command": "mvbasicAnalyser.showSetupGuide",
+        "title": "Show Setup Guide",
+        "category": "MultiValue Basic Analyser"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "mvbasicAnalyser.analyseProgram",
+          "group": "9_mvba@1"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "mvbasicAnalyser.analyseProgram",
+          "when": "!explorerResourceIsFolder",
+          "group": "9_mvba@1"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "mvbasicAnalyser.analyseProgram",
+        "key": "ctrl+alt+a",
+        "mac": "cmd+alt+a",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "MultiValue Basic Analyser",
+      "properties": {
+        "mvbasicAnalyser.outputFolder": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Folder where reports are saved. When empty, reports are saved in `docs/uvdoc` within the workspace, or in a `uvdoc` folder next to the program if no workspace is open. Relative paths are resolved from the workspace folder. Supports `${workspaceFolder}`, `${fileDirname}` and `~`."
+        },
+        "mvbasicAnalyser.openIn": {
+          "type": "string",
+          "enum": [
+            "browser",
+            "vscodePreview",
+            "both",
+            "none"
+          ],
+          "enumDescriptions": [
+            "Open the report in a web browser. Requires a Markdown viewer extension in the browser.",
+            "Open the report in VS Code's built-in Markdown preview.",
+            "Open the report in both the browser and the Markdown preview.",
+            "Save the report without opening it."
+          ],
+          "default": "browser",
+          "description": "Where the report opens after it is generated."
+        },
+        "mvbasicAnalyser.browser": {
+          "type": "string",
+          "enum": [
+            "chrome",
+            "edge",
+            "system",
+            "custom"
+          ],
+          "enumDescriptions": [
+            "Google Chrome.",
+            "Microsoft Edge.",
+            "The application your operating system associates with .md files. This may be a text editor rather than a browser.",
+            "The browser specified in the 'Browser Path' setting."
+          ],
+          "default": "chrome",
+          "description": "Browser used to open reports."
+        },
+        "mvbasicAnalyser.browserPath": {
+          "type": "string",
+          "default": "",
+          "description": "Full path to the browser executable. Used only when 'Browser' is set to custom."
+        },
+        "mvbasicAnalyser.diagram": {
+          "type": "string",
+          "enum": [
+            "mermaid",
+            "markmap",
+            "both",
+            "none"
+          ],
+          "default": "mermaid",
+          "description": "Diagram format for the internal call tree. A plain-text call tree is always included.",
+          "enumDescriptions": [
+            "Mermaid flowchart (supported by most Markdown viewers).",
+            "Markmap mind map (supported by fewer viewers).",
+            "Both diagram formats.",
+            "Text call tree only."
+          ]
+        },
+        "mvbasicAnalyser.excludeRoutines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "Routine labels to omit from the call tree, its diagrams and the Internal routines table, for example `OPENFILES` or `ERR.HANDLE`. Matching is not case-sensitive; use `*` to match any characters and `?` to match a single character (for example `ERR.*`). Routines called only through an excluded routine are also omitted. Warnings are still reported for excluded routines."
+        },
+        "mvbasicAnalyser.maxTreeDepth": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 50,
+          "description": "Maximum depth of the internal call tree. Deeper calls are indicated with '…'."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "test": "node test/run-tests.js && node test/smoke-extension.js",
+    "package": "python3 scripts/package-vsix.py"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/node": "^20.0.0"
+  },
+  "galleryBanner": {
+    "color": "#2B3AA8",
+    "theme": "dark"
+  }
+}
