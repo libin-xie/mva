@@ -2,8 +2,6 @@
 
 MultiValue Basic Analyser generates a structured documentation report for a Rocket UniVerse BASIC program. With a single command, it analyses the program open in the editor, writes the results to a Markdown file and opens the report in your web browser.
 
-![Internal call tree of a UniVerse subroutine, shown as a text tree and a Mermaid diagram](images/screenshots/call-tree.jpg)
-
 ## Features
 
 Each report contains:
@@ -21,33 +19,10 @@ Each report contains:
 
 The extension never modifies your source code, and all analysis takes place on your computer.
 
-## Screenshots
-
-**Report overview.** The summary is taken from the program's header comment, followed by the signature, files and other details.
-
-![Report overview showing the summary, signature, parameters and files](images/screenshots/report-overview.jpg)
-
-**Metrics and warnings.** Each report highlights potential problems, such as code that can never run.
-
-![Metrics table and a warning about unreachable code](images/screenshots/metrics-warnings.jpg)
-
 ## Requirements
 
 - Visual Studio Code 1.90 or later.
 - To view reports in a browser: Google Chrome or Microsoft Edge with a Markdown viewer extension (see below). Alternatively, reports can be viewed in VS Code's built-in Markdown preview.
-
-## Browser setup
-
-Browsers display `.md` files as plain text unless a Markdown viewer extension is installed. Complete these steps once in Google Chrome; the steps for Microsoft Edge are similar.
-
-1. Install a Markdown viewer extension from the Chrome Web Store, such as **Markdown Viewer**.
-2. Go to `chrome://extensions`, select **Details** for the Markdown viewer extension, and turn on **Allow access to file URLs**. Without this permission the extension cannot open reports stored on your computer.
-3. In the extension's options, enable **Mermaid** so that the call tree is drawn as a diagram. We also recommend enabling auto-reload, so that an open report refreshes when you analyse the program again.
-4. Run **Analyse Program** on any program. The report should appear with formatted tables and diagrams.
-
-**Viewing reports in VS Code instead.** Set **Open In** to `vscodePreview`, or select **Use VS Code Preview Instead** when the first-run message appears. The built-in preview displays tables but not Mermaid diagrams; to display diagrams as well, install the **Markdown Preview Mermaid Support** extension. Every report also includes a plain-text call tree, so it remains readable in any viewer.
-
-**Markmap diagrams.** Markmap is supported by fewer Markdown viewers than Mermaid. Confirm that your viewer supports it before setting **Diagram** to `markmap`.
 
 ## Usage
 
@@ -61,6 +36,33 @@ Open a UniVerse BASIC program in VS Code. Files without an extension, such as th
 The extension analyses the program as it currently appears in the editor, including unsaved changes. A workspace is not required, and no other source files are read. Calls to programs that have already been analysed are linked to their existing reports.
 
 The report is saved as `<PROGRAM>.md` and opened according to the **Open In** setting. Run the command again after changing the program to regenerate the report; anything you have written in the **Notes** section is kept.
+
+## Screenshots
+
+**Internal Call tree  overview.** 
+![Internal call tree of a UniVerse subroutine, shown as a text tree and a Mermaid diagram](images/screenshots/call-tree.jpg)
+
+**Report overview.** The summary is taken from the program's header comment, followed by the signature, files and other details.
+
+![Report overview showing the summary, signature, parameters and files](images/screenshots/report-overview.jpg)
+
+**Metrics and warnings.** Each report highlights potential problems, such as code that can never run.
+
+![Metrics table and a warning about unreachable code](images/screenshots/metrics-warnings.jpg)
+
+
+## Browser setup
+
+Browsers display `.md` files as plain text unless a Markdown viewer extension is installed. Complete these steps once in Google Chrome; the steps for Microsoft Edge are similar.
+
+1. Install a Markdown viewer extension from the Chrome Web Store, such as **Markdown Viewer**.
+2. Go to `chrome://extensions`, select **Details** for the Markdown viewer extension, and turn on **Allow access to file URLs**. Without this permission the extension cannot open reports stored on your computer.
+3. In the extension's options, enable **Mermaid** so that the call tree is drawn as a diagram. We also recommend enabling auto-reload, so that an open report refreshes when you analyse the program again.
+4. Run **Analyse Program** on any program. The report should appear with formatted tables and diagrams.
+
+**Viewing reports in VS Code instead.** Set **Open In** to `vscodePreview`, or select **Use VS Code Preview Instead** when the first-run message appears. The built-in preview displays tables but not Mermaid diagrams; to display diagrams as well, install the **Markdown Preview Mermaid Support** extension. Every report also includes a plain-text call tree, so it remains readable in any viewer.
+
+**Markmap diagrams.** Markmap is supported by fewer Markdown viewers than Mermaid. Confirm that your viewer supports it before setting **Diagram** to `markmap`.
 
 ## Extension settings
 
