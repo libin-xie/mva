@@ -3,7 +3,7 @@
   "displayName": "MultiValue Basic Analyser",
   "description": "Generate documentation reports for Rocket UniVerse BASIC programs, including the internal call tree with Mermaid or Markmap diagrams, file usage, metrics and warnings.",
   "version": "1.0.0",
-  "publisher": "L Xie",
+  "publisher": "aa1b7562-cbbf-6b41-b396-8de473e33741",
   "license": "SEE LICENSE IN LICENSE.md",
   "icon": "images/icon.png",
   "sponsor": {
