@@ -1,0 +1,172 @@
+SUBROUTINE TEST1 (params.in, params.out)
+*
+* Program introduction
+*
+* Created: 2024-06-06
+*
+* Author: L Xie
+*
+* Description: 
+*   This subroutine performs a series of test operations by calling various subroutines.
+*
+* Parameters:
+*   params.in  - Input parameters for the subroutine
+*   params.out - Output parameters for the subroutine
+*
+*
+$INCLUDE UNIVERSE.H XML.H
+* Include necessary headers for universe and XML handling
+   GOSUB INITIALISE
+   GOSUB SUB1
+   GOSUB SUB2
+   GOSUB SUB3
+STOP
+*
+*==== internal subroutine definitions
+* Internal subroutine definitions for the test operations
+*
+*-----------------------------------------------------------------------
+*
+* Subroutine INITIALISE handles the initial setup and preparation for
+* the test operations.
+*
+INITIALISE:
+*
+* xxx logic here
+GOSUB OPEN.F
+*
+RETURN
+*
+*-----------------------------------------------------------------------
+*
+* Subroutine OPEN.F handles the opening of necessary files for the test operations.
+*
+OPEN.F:
+*
+   OPEN "CUSTOMER" TO FV.CUSTOMER ELSE
+      STOP "Failed to open CUSTOMER file"
+   END
+*
+RETURN
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB1 is responsible for orchestrating the first set of test
+* operations by sequentially invoking SUB11 and SUB12.
+*
+SUB1:
+*
+GOSUB SUB11
+GOSUB SUB12
+*
+RETURN
+*
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB1 handles the initial set of test operations by calling 
+* SUB11 and SUB12.
+*
+SUB11:
+*
+GOSUB SUB111
+*
+RETURN
+*
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB111 handles the detailed logic for the initial test 
+* operation within SUB11.
+*
+SUB111:
+*
+* xxx logic here
+*
+RETURN
+*
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB12 handles the second test operation within SUB1.
+*
+SUB12:
+*
+* xxx logic here
+*
+RETURN
+*-----
+SUB3:
+GOSUB SUB31
+GOSUB SUB32
+RETURN
+*
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB31 handles the first test operation within SUB3.
+*
+SUB31:
+*
+* xxx logic here
+*
+RETURN
+*
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB32 handles the second test operation within SUB3.
+*
+SUB32:
+*
+* xxx logic here
+*
+RETURN
+*
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB2 handles the second set of test operations by calling 
+* SUB22 and SUB23.
+*
+SUB2:
+*
+GOSUB SUB22
+GOSUB SUB23
+RETURN
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB22 handles the first test operation within SUB2.
+*
+SUB22:
+*
+GOSUB SUB222
+CALL API.S1 (parameters.in, parameters.back)
+CALL API.S2 (parameters.in, parameters.back)
+*
+RETURN
+*
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB23 handles the second test operation within SUB2.
+*
+SUB23:
+*
+* xxx logic here
+*
+RETURN
+*-----------------------------------------------------------------------
+*
+* Subroutine SUB222 handles the detailed logic for the first test 
+* operation within SUB22.
+*
+SUB222:
+*
+* xxx logic here
+*
+RETURN
+*
+*-----------------------------------------------------------------------
+*
+* NOT USED SUBROUTINE
+*
+SUB.NOT.USED
+*
+* xxx logic here
+*
+RETURN
+*
+END
