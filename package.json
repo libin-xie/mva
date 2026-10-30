@@ -9,6 +9,7 @@
   "sponsor": {
     "url": "https://buy.stripe.com/5kQ9AUgkD5iT3Bwffq6EU02"
   },
+    "repository": { "type": "git", "url": "https://github.com/libin-xie/mva" },
   "engines": {
     "vscode": "^1.90.0"
   },
